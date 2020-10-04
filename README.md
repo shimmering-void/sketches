@@ -1,6 +1,6 @@
 # sketches
 
-A collection of generative art sketches done using [`clojure`](https://clojure.org/), [`quil`](http://www.quil.info/) and [`figwheel-main`](https://figwheel.org/).
+A collection of generative art sketches using [`clojure`](https://clojure.org/), [`quil`](http://www.quil.info/) and [`figwheel-main`](https://figwheel.org/).
 
 Based off the [`figwheel-main-template`](https://github.com/bhauman/figwheel-main-template) for `leiningen`.
 
