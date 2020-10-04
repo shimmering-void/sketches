@@ -2,8 +2,8 @@
   (:require [quil.core :as q]
             [quil.middleware :as middleware]
             [sketches.palette :as pal]
-            [save-image :as f]
-            [plot :as p]))
+            [util.files :as f]
+            [util.plot :as p]))
 
 ;(def body (.-body js/document))
 ;(def w (.-clientWidth body))
@@ -24,8 +24,8 @@
 (defn f [t] (+ (Math/sin (Math/log (Math/cos t)))))
 
 (defn polar [radius winding f t]
-  {:x (* radius (f t) (Math/cos (* winding t)))
-   :y (* radius (f t) (Math/sin (* winding t)))})
+  [(* radius (f t) (Math/cos (* winding t)))
+   (* radius (f t) (Math/sin (* winding t)))] )
 
 (defn g [w t] (polar radius w f t))
 
@@ -48,21 +48,19 @@
   state)
 
 
-(defn sketch-draw [{[ox oy] :origin
+(defn sketch-draw [{origin :origin
                     plots :plots
-                    [bx by] :bounds
-                    [sx sy] :size}]
+                    bounds :bounds
+                    size :size}]
   (apply q/background (:background palette))
   (doseq [{samples :samples
-           [px py] :position} plots]
-    (doseq [[p1 p2] (map vector samples (drop 1 samples))]
+           offset :position} plots]
+    (doseq [[p1 p2] (p/to-segments samples)]
       (apply q/stroke color)
       (apply q/fill color)
       (q/stroke-weight (* 0.2 unit))
-      (let [x1 (+ (p/map-range (:x p1) bx sx) ox px)
-            y1 (+ (p/map-range (:y p1) by sy) oy py)
-            x2 (+ (p/map-range (:x p2) bx sx) ox px)
-            y2 (+ (p/map-range (:y p2) by sy) oy py)]
+      (let [[x1 y1] (p/add-points (p/project-point p1 bounds size) offset origin)
+            [x2 y2] (p/add-points (p/project-point p2 bounds size) offset origin)]
         (q/line x1 y1 x2 y2)))))
 
 

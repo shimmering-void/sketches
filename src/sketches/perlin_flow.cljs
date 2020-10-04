@@ -2,7 +2,7 @@
   (:require [quil.core :as q]
             [quil.middleware :as middleware]
             [sketches.palette :as pal]
-            [save-image :as f]))
+            [util.files :as f]))
 
 (println "Perlin flow hellooooo!")
 

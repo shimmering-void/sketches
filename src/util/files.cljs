@@ -1,4 +1,4 @@
-(ns save-image
+(ns util.files
   (:require [quil.core :as q]))
 
 (defn save-image
