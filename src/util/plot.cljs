@@ -25,6 +25,9 @@
   (map f (range min max precision)))
 
 (defn to-segments
-  "take a list of points of a function sample and turn them into plottable line segments"
+  "take a list of points of a function sample and turn them into plottable line segments.
+
+  i.e. [[1 1] [2 2] [3 3] [4 4]] -> [[[1 1] [2 2]], [[2 2] [3 3]], [[3 3] [4 4]]]
+  "
   [samples]
   (map vector samples (drop 1 samples)))
