@@ -4,6 +4,16 @@ A collection of generative art sketches done using [`clojure`](https://clojure.o
 
 Based off the [`figwheel-main-template`](https://github.com/bhauman/figwheel-main-template) for `leiningen`.
 
+## Gallery
+
+### perlin-flow
+
+![](https://raw.githubusercontent.com/bfollington/sketches/main/renders/city-smoke.png)
+
+### function-plot
+
+![](https://raw.githubusercontent.com/bfollington/sketches/main/renders/function-plot.png)
+
 ## Development
 
 To get an interactive development environment run:
