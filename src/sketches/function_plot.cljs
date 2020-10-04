@@ -1,18 +1,21 @@
 (ns sketches.function-plot
   (:require [quil.core :as q]
             [quil.middleware :as middleware]
-            [sketches.palette :as pal]))
+            [sketches.palette :as pal]
+            [save-image :as f]))
 
 (def body (.-body js/document))
-(def w (.-clientWidth body))
-(def h (.-clientHeight body))
+(def w 4096)
+(def h 4096)
+(def unit (/ w 100))
 
-(def palette pal/vivid)
+(def palette pal/eighties-light)
 (def color (rand-nth (:colors palette)))
+(def per-row 5)
 (def radius 16)
-(def size 96)
-(def spacing 8)
-(def margin 32)
+(def size (* (/ 90 per-row) unit))
+(def spacing (* (/ 4.5 (- per-row 1)) unit))
+(def margin (* 2.75 unit))
 
 (defn f [t] (+ (Math/sin (Math/log (Math/cos t)))))
 
@@ -23,17 +26,17 @@
 (defn g [r w t] (polar r w f t))
 
 (defn sample [r w [min max]]
-  (map (partial g r w) (range min max 0.01)))
+  (map (partial g r w) (range min max 0.02)))
 
 
 (defn plot [idx w]
   {:samples (sample radius w [0 (* 8 Math/PI)])
-   :position [(* (mod idx 10) (+ size spacing)) (* (quot idx 10) (+ size spacing))]})
+   :position [(* (mod idx per-row) (+ size spacing)) (* (quot idx per-row) (+ size spacing))]})
 
 (defn sketch-setup []
   []
   {:origin [margin margin]
-   :plots (map-indexed plot (range 0 Math/PI (/ Math/PI 100)))
+   :plots (map-indexed plot (range 0 Math/PI (/ Math/PI (* per-row per-row))))
    :bounds [[(- radius) radius] [(- radius) radius]]
    :size [[0 size] [0 size]]})
 
@@ -59,12 +62,13 @@
     (doseq [[p1 p2] (map vector samples (drop 1 samples))]
       (apply q/stroke color)
       (apply q/fill color)
-      (q/stroke-weight 1)
+      (q/stroke-weight (* 0.2 unit))
       (let [x1 (+ (map-range (:x p1) bx sx) ox px)
             y1 (+ (map-range (:y p1) by sy) oy py)
             x2 (+ (map-range (:x p2) bx sx) ox px)
             y2 (+ (map-range (:y p2) by sy) oy py)]
         (q/line x1 y1 x2 y2)))))
+
 
 
 (defn create [canvas]
@@ -74,6 +78,7 @@
     :draw #'sketch-draw
     :setup #'sketch-setup
     :update #'sketch-update
+    :key-pressed (f/save-image "function-plot.png")
     :middleware [middleware/fun-mode]
     :settings (fn []
                 (q/random-seed 666)
