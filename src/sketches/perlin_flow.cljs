@@ -1,7 +1,8 @@
 (ns sketches.perlin-flow
   (:require [quil.core :as q]
             [quil.middleware :as middleware]
-            [sketches.palette :as pal]))
+            [sketches.palette :as pal]
+            [save-image :as f]))
 
 (println "Perlin flow hellooooo!")
 
@@ -88,6 +89,7 @@
     :draw #'sketch-draw
     :setup #'sketch-setup
     :update #'sketch-update
+    :key-pressed (f/save-image "city-smoke.png")
     :middleware [middleware/fun-mode]
     :settings (fn []
                 (q/random-seed 666)
