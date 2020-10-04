@@ -1,16 +1,14 @@
 # sketches
 
-FIXME: Write a one-line description of your library/project.
+A collection of generative art sketches done using [`clojure`](https://clojure.org/), [`quil`](http://www.quil.info/) and [`figwheel-main`](https://figwheel.org/).
 
-## Overview
-
-FIXME: Write a paragraph about the library/project and highlight its goals.
+Based off the [`figwheel-main-template`](https://github.com/bhauman/figwheel-main-template) for `leiningen`.
 
 ## Development
 
 To get an interactive development environment run:
 
-    lein fig:build
+    lein fig -b dev -r
 
 This will auto compile and send all changes to the browser without the
 need to reload. After the compilation process is complete, you will
@@ -32,6 +30,6 @@ To create a production build run:
 
 ## License
 
-Copyright © 2018 FIXME
+Copyright © 2020 Ben Follington
 
 Distributed under the Eclipse Public License either version 1.0 or (at your option) any later version.
