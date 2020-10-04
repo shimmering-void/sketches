@@ -9,7 +9,7 @@
 (def w (.-clientWidth body))
 (def h (.-clientHeight body))
 
-(def palette pal/eighties)
+(def palette pal/vivid)
 
 (defn particle
   [id]
@@ -63,20 +63,22 @@
                    :y         (position (:y p) (:vy p) h)
                    :direction (direction (:x p) (:y p) (:id p))
                    :vx        (velocity (:vx p) (Math/cos (:direction p)))
-                   :vy        (velocity (:vy p) (* 2 (:direction p)  (Math/sin (:x p)) (Math/sin (:direction p))))))
+                   :vy        (velocity (:vy p) (* (* (:direction p) (:direction p))  (Math/sin (:x p)) (Math/sin (:direction p))))))
                particles)})
 
 
 (defn sketch-draw [{particles :particles
                     first-render :first-render}]
   (when first-render (apply q/background (:background palette)))
-  ;(q/no-stroke)
   (doseq [p particles]
     (apply q/stroke (conj (:color p) 20))
     (apply q/fill (conj (:color p) 20))
     (q/stroke-weight 2)
-    (q/line (:x p) (:y p) (+ (:x p) (* (Math/cos (:direction p)) (:size p))) (+ (:y p) (* (Math/sin (:direction p)) (:size p))))
-    ))
+    (q/line
+      (:x p)
+      (:y p)
+      (+ (:x p) (* (Math/cos (:direction p)) (:size p)))
+      (+ (:y p) (* (Math/sin (:direction p)) (:size p))))))
 
 
 (defn create [canvas]
