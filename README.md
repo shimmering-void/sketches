@@ -8,9 +8,13 @@ Based off the [`figwheel-main-template`](https://github.com/bhauman/figwheel-mai
 
 ### perlin-flow
 
+Inspired by https://functional.christmas/2019/13.
+
 ![](https://raw.githubusercontent.com/bfollington/sketches/main/renders/city-smoke.png)
 
 ### function-plot
+
+Inspired by https://www.youtube.com/watch?v=spUNpyF58BY.
 
 ![](https://raw.githubusercontent.com/bfollington/sketches/main/renders/function-plot.png)
 
