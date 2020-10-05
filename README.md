@@ -18,6 +18,12 @@ Inspired by https://www.youtube.com/watch?v=spUNpyF58BY.
 
 ![](https://raw.githubusercontent.com/bfollington/sketches/main/renders/function-plot.png)
 
+### dragon-curve
+
+Inspired by https://breaksome.tech/coding-a-dragon-curve-in-p5js/.
+
+![](https://raw.githubusercontent.com/bfollington/sketches/main/renders/dragon-curve.png)
+
 ## Development
 
 To get an interactive development environment run:
