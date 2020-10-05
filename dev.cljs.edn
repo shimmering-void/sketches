@@ -2,4 +2,4 @@
   :css-dirs ["resources/public/css"]
   :auto-testing true
    }
-{:main sketches.function-plot}
+{:main sketches.dragon-curve}
