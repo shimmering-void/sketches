@@ -30,4 +30,4 @@
   i.e. [[1 1] [2 2] [3 3] [4 4]] -> [[[1 1] [2 2]], [[2 2] [3 3]], [[3 3] [4 4]]]
   "
   [samples]
-  (map vector samples (drop 1 samples)))
+  (partition 2 1 samples))
