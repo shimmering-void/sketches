@@ -12,17 +12,6 @@
 
 (def palette pal/flower)
 
-(defn particle
-  [id]
-  {:id id
-   :vx 1
-   :vy 1
-   :size (q/random 8 16)
-   :direction 0
-   :x (q/random w)
-   :y (q/random h)
-   :color (rand-nth (:colors palette))})
-
 (def default-cell
   {:value 0
    :color 0})
@@ -69,30 +58,6 @@
        (map (partial apply-rules rules))
        (into [])))
 
-(def noise-zoom
-  "Noise zoom level."
-  0.025)
-
-(defn position
-  "Calculates the next position based on the current, the speed and a max."
-  [current delta max]
-  (mod (+ current delta) max))
-
-
-(defn direction
-  "Calculates the next direction based on the previous position and id of each particle."
-  [x y z]
-  (* 2
-     Math/PI
-     (+ (q/noise (* x noise-zoom) (* y noise-zoom))
-        (* 0.2 (q/noise (* x noise-zoom) (* y noise-zoom) (* z noise-zoom))))))
-
-(defn velocity
-  "Calculates the next velocity by averaging the current velocity and the added delta."
-  [current delta]
-  (/ (+ current delta) 2))
-
-
 (defn sketch-update
   "Returns the next state to render. Receives the current state as a paramter."
   [{count :count
@@ -103,7 +68,6 @@
 
   (if (< count 1024)
     (let [next (next-gen cells rules)]
-      ;; (println next)
       {:first-render false
        :count (inc count)
        :cells next
@@ -123,14 +87,10 @@
 (defn sketch-draw [{first-render :first-render
                     count :count
                     cells :cells
-                    generations :generations}]
+                    _generations :generations}]
   (when first-render (apply q/background (:background palette)))
   (q/stroke-weight 0)
-  (draw-cells cells (* count size))
-  ;; (doseq [[i g] (map-indexed vector generations)]
-  ;;   ;; (println [i g])
-  ;;   (draw-cells g (* (inc i) size)))
-  )
+  (draw-cells cells (* count size)))
 
 
 (defn create [canvas]
