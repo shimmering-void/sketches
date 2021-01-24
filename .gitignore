@@ -14,3 +14,5 @@ pom.xml
 .idea
 resources/public/cljs-out
 .clj-kondo
+.calva
+.lsp
