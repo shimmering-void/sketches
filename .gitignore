@@ -13,3 +13,4 @@ pom.xml
 .rebel_readline_history
 .idea
 resources/public/cljs-out
+.clj-kondo

@@ -1,5 +1,4 @@
 ^{:watch-dirs ["test" "src"]
   :css-dirs ["resources/public/css"]
-  :auto-testing true
-   }
-{:main sketches.dragon-curve}
+  :auto-testing true}
+{:main sketches.cellular}

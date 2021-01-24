@@ -1,7 +1,8 @@
 (ns util.plot)
 
-(defn map-range [x [in-min in-max] [out-min out-max]]
+(defn map-range 
   "map between two ranges, i.e. mapping 0.5 from [0 1] to [-1 1] gives 0."
+  [x [in-min in-max] [out-min out-max]]
   (+ (/ (* (- x in-min) (- out-max out-min)) (- in-max in-min)) out-min))
 
 (defn project-point
@@ -20,8 +21,9 @@
   (reduce inner-add-points p ps))
 
 
-(defn sample [f [min max] precision]
+(defn sample 
   "sample the function f over the provided range"
+  [f [min max] precision]
   (map f (range min max precision)))
 
 (defn to-segments

@@ -6,11 +6,11 @@
             [util.plot :as p]))
 
 (def body (.-body js/document))
-;(def w (.-clientWidth body))
-;(def h (.-clientHeight body))
+(def w (.-clientWidth body))
+(def h (.-clientHeight body))
 
-(def w 4096)
-(def h 4096)
+;(def w 4096)
+;(def h 4096)
 (def unit (/ w 100))
 
 (def palette pal/eighties)
@@ -76,47 +76,47 @@
   (let [length (count dragon)
         l (* unit 2)]
     (when (> length) 1
-                     (q/push-matrix)
-                     (q/rotate -90)
-                     (q/line 0 0 l 0)
-                     (q/translate l 0)
-                     (dragon-draw dragon t l color)
-                     (q/pop-matrix)
+          (q/push-matrix)
+          (q/rotate -90)
+          (q/line 0 0 l 0)
+          (q/translate l 0)
+          (dragon-draw dragon t l color)
+          (q/pop-matrix)
 
-                     (q/push-matrix)
-                     (q/rotate -180)
-                     (q/line 0 0 l 0)
-                     (q/translate l 0)
-                     (dragon-draw dragon t l color)
-                     (q/pop-matrix)
+          (q/push-matrix)
+          (q/rotate -180)
+          (q/line 0 0 l 0)
+          (q/translate l 0)
+          (dragon-draw dragon t l color)
+          (q/pop-matrix)
 
-                     (q/push-matrix)
-                     (q/rotate -270)
-                     (q/line 0 0 l 0)
-                     (q/translate l 0)
-                     (dragon-draw dragon t l color)
-                     (q/pop-matrix)
+          (q/push-matrix)
+          (q/rotate -270)
+          (q/line 0 0 l 0)
+          (q/translate l 0)
+          (dragon-draw dragon t l color)
+          (q/pop-matrix)
 
-                     (q/push-matrix)
-                     (q/rotate 0)
-                     (q/line 0 0 l 0)
-                     (q/translate l 0)
-                     (dragon-draw dragon t l color)
-                     (q/pop-matrix))))
+          (q/push-matrix)
+          (q/rotate 0)
+          (q/line 0 0 l 0)
+          (q/translate l 0)
+          (dragon-draw dragon t l color)
+          (q/pop-matrix))))
 
 
 
 (defn create [canvas]
   (q/sketch
-    :host canvas
-    :size [w h]
-    :draw #'sketch-draw
-    :setup #'sketch-setup
-    :update #'sketch-update
-    :key-pressed (f/save-image "dragon-curve.png")
-    :middleware [middleware/fun-mode]
-    :settings (fn []
-                (q/random-seed 666)
-                (q/noise-seed 666))))
+   :host canvas
+   :size [w h]
+   :draw #'sketch-draw
+   :setup #'sketch-setup
+   :update #'sketch-update
+   :key-pressed (f/save-image "dragon-curve.png")
+   :middleware [middleware/fun-mode]
+   :settings (fn []
+               (q/random-seed 666)
+               (q/noise-seed 666))))
 
 (defonce sketch (create "sketch"))
