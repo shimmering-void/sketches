@@ -1,4 +1,4 @@
 ^{:watch-dirs ["test" "src"]
   :css-dirs ["resources/public/css"]
   :auto-testing true}
-{:main sketches.cellular-2d}
+{:main sketches.cellular-2d-sprites}
