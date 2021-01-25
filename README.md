@@ -24,6 +24,22 @@ Inspired by https://breaksome.tech/coding-a-dragon-curve-in-p5js/.
 
 ![](https://raw.githubusercontent.com/bfollington/sketches/main/renders/dragon-curve.png)
 
+### cells
+
+Inspired by https://mathworld.wolfram.com/ElementaryCellularAutomaton.html
+
+![](https://raw.githubusercontent.com/bfollington/sketches/main/renders/cells.png)
+
+### cells-2d
+
+Inspired by https://content.wolfram.com/uploads/sites/34/2020/07/two-dimensional-cellular-automata.pdf
+
+![](https://raw.githubusercontent.com/bfollington/sketches/main/renders/cells-2d.png)
+
+### cells-2d-sprites
+
+![](https://raw.githubusercontent.com/bfollington/sketches/main/renders/cells-2d-sprites.png)
+
 ## Development
 
 To get an interactive development environment run:
