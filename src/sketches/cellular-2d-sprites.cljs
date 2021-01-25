@@ -29,7 +29,7 @@
   (assoc-in cells [y x] v))
 
 
-(def grid-size 33)
+(def grid-size 65)
 (def grid-width grid-size)
 (def grid-height grid-size)
 
@@ -38,8 +38,7 @@
   ;; (q/set-state! :image (q/load-image "https://placekitten.com/100/100"))
   {:first-render true
    :count 0
-   :images {:0 (q/load-image "/sprites/0.png")
-            :1 (q/load-image "/sprites/1.png")}
+   :images [(q/load-image "/sprites/0.png") (q/load-image "/sprites/1.png") (q/load-image "/sprites/2.png") (q/load-image "/sprites/3.png") (q/load-image "/sprites/4.png") (q/load-image "/sprites/5.png") (q/load-image "/sprites/6.png") (q/load-image "/sprites/7.png")]
    :cells (set-cell (make-grid grid-width grid-height) (/ grid-width 2) (/ grid-width 2) {:value 1 :color 0})
    :rule-fn rules/test-rules
    :generations []})
@@ -87,7 +86,7 @@
     generations :generations
     :as state}]
 
-  (if (< count 15)
+  (if (< count 31)
     (let [next (next-gen cells rule-fn)]
       {:first-render false
        :count (inc count)
@@ -97,15 +96,15 @@
        :generations (conj generations cells)})
     state))
 
-(def size 32)
+(def size 16)
 
 (defn draw-cells [cells images]
   (doseq [[x column] (map-indexed vector cells)]
     (doseq [[y cell] (map-indexed vector column)]
-      (when (= (:value cell) 0)
-        (when (q/loaded? (:0 images)) (q/image (:0 images) (* x size) (* y size))))
-      (when (= (:value cell) 1)
-        (when (q/loaded? (:1 images)) (q/image (:1 images) (* x size) (* y size)))))))
+      ;; (when (= (:value cell) 0)
+      ;;   (when (q/loaded? (get images 0)) (q/image (get images 0) (* x size) (* y size))))
+      ;; (when (= (:value cell) 1))
+      (when (q/loaded? (get images (:color cell))) (q/image (get images (:color cell)) (* x size) (* y size))))))
 
 (defn sketch-draw [{_first-render :first-render
                     _count :count
